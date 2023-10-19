@@ -26,8 +26,12 @@ void insertion_sort_list(listint_t **list)
 {
 	listint_t *cnode = (*list)->next, *prev, *temp;
 
-	if (!list || !*list || listlen(*list) < 2)
+	if (!list || !*list)
 		return;
+
+    if (listlen(*list) < 2)
+        printf("%s", "ALOT");
+
 
 	while (cnode)
 	{
