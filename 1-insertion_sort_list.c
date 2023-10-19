@@ -1,40 +1,63 @@
 #include "sort.h"
 
 /**
+ * listlen - list length
+ * @head: head
+ * Return: length
+ */
+
+int listlen(listint_t *head)
+{
+	listint_t *h = head;
+	int len = 0;
+
+	while (h)
+		len++, h = h->next;
+
+	return (len);
+}
+
+/**
  * insertion_sort_list - insertion-sorting lists
  * @list: the list
  */
 
 void insertion_sort_list(listint_t **list)
 {
-    listint_t *cnode = (*list)->next, *prev;
+	listint_t *cnode = (*list)->next, *prev, *temp;
 
-    while (cnode)
-    {
-        prev = cnode->prev;
+	if (!list || !*list || listlen(*list) < 2)
+		return;
 
-        while (prev && cnode->n < prev->n)
-        {
-            cnode->next->prev = prev;
-            /* Swaping nodes - cnode with it previous (rest is in bottom)*/
-            cnode->prev = prev->prev;
-            prev->next = cnode->next;
-            cnode->next = prev;
+	while (cnode)
+	{
+		prev = cnode->prev;
 
-            /* Updating prev previous node to link to cnode (current node)*/
-            if (prev->prev)
-                prev->prev->next = cnode;
-            else
-                *list = cnode;
+		temp = cnode;
 
-            /* Last thing to finish swaping nodes (rest) */
-            prev->prev = cnode;
+		while (prev && cnode->n < prev->n)
+		{
+			if (cnode->next)
+				cnode->next->prev = prev;
+			cnode->prev = prev->prev;
+			prev->next = cnode->next;
+			cnode->next = prev;
 
-            prev = cnode->prev;
+			if (prev->prev)
+				prev->prev->next = cnode;
+			else
+				*list = cnode;
 
-            print_list(*list);
-        }
+			prev->prev = cnode;
 
-        cnode = cnode->next;
-    }
+			temp = prev;
+
+			prev = cnode->prev;
+
+			print_list(*list);
+		}
+
+		cnode = temp;
+		cnode = cnode->next;
+	}
 }
