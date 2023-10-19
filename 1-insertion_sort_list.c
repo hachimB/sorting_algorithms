@@ -24,14 +24,12 @@ int listlen(listint_t *head)
 
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *cnode = (*list)->next, *prev, *temp;
+	listint_t *cnode, *prev, *temp;
 
-	if (!list || !*list)
+	if (!list || !*list || listlen(*list) < 2)
 		return;
 
-    if (listlen(*list) < 2)
-        printf("%s", "ALOT");
-
+	cnode = (*list)->next;
 
 	while (cnode)
 	{
