@@ -14,8 +14,6 @@ if (!size || !array)
 return;
 for (i = 0; i < size - 1; i++)
 {
-/*if (array[i] != (int)array[i])*/
-/*return;*/
 flag = 0;
 for (j = 0; j < size - 1 - i; j++)
 {
