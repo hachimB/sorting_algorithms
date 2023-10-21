@@ -56,7 +56,7 @@ void quick_sort(int *array, size_t size)
 {
     size_t pi;
 
-    if (size <= 1)
+    if (size < 2 || !array) 
         return;
 
     pi = partition(array, size, array);
