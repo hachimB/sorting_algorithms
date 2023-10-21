@@ -55,18 +55,12 @@ size_t partition(int *array, size_t size, int *original)
 void quick_sort(int *array, size_t size)
 {
     size_t pi;
-    int *arr;
-    static int stop = 0;
 
     if (size <= 1)
         return;
 
-    if (stop == 0)
-        arr = array;
+    pi = partition(array, size, array);
 
-    stop += 1;
-    pi = partition(arr, size, array);
-
-    quick_sort(arr, pi);
-    quick_sort(arr + pi, size - pi);
+    quick_sort(array, pi);
+    quick_sort(array + pi, size - pi);
 }
