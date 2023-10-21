@@ -73,7 +73,7 @@ void sortQuick(int *array, size_t size, int *original, size_t osize)
  */
 void quick_sort(int *array, size_t size)
 {
-	if (!array || size < 2)
+	if (!array || !size)
 		return;
 
 	sortQuick(array, size, array, size);
