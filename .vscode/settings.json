@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "*.ejs": "html",
-        "sort.h": "c"
+        "sort.h": "c",
+        "string.h": "c"
     }
 }
