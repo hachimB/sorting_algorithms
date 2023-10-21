@@ -4,14 +4,9 @@
  * swap - swap 2 elements from arr
  * @arr: arr
  */
-
 void swap(int *arr, int a, int b)
 {
     int temp = arr[a];
-
-    if (!arr || a * b < 0)
-        return;
-
     arr[a] = arr[b];
     arr[b] = temp;
 }
@@ -22,8 +17,7 @@ void swap(int *arr, int a, int b)
  * @size: size
  * Return: pivot index
  */
-
-size_t partition(int *array, size_t size, int *original)
+size_t partition(int *array, size_t size)
 {
     int pivot = array[size - 1];
     size_t i = -1;
@@ -38,7 +32,7 @@ size_t partition(int *array, size_t size, int *original)
             if (j != i)
             {
                 swap(array, i, j);
-                print_array(original, size);
+                print_array(array, size);
             }
         }
     }
@@ -51,16 +45,15 @@ size_t partition(int *array, size_t size, int *original)
  * @array: array
  * @size: array size
  */
-
 void quick_sort(int *array, size_t size)
 {
     size_t pi;
 
-    if (size < 2 || !array) 
+    if (size < 2 || !array)
         return;
 
-    pi = partition(array, size, array);
+    pi = partition(array, size);
 
     quick_sort(array, pi);
-    quick_sort(array + pi, size - pi);
+    quick_sort(array + pi + 1, size - pi - 1);
 }
