@@ -63,7 +63,7 @@ void sortQuick(int *array, size_t size, int *original, size_t osize)
 	pi = partition(array, size, original, osize);
 
 	sortQuick(array, pi, original, osize);
-	sortQuick(array + pi, size - pi - 1, original, osize);
+	sortQuick(array + pi + 1, size - pi - 1, original, osize);
 }
 
 /**
@@ -73,7 +73,7 @@ void sortQuick(int *array, size_t size, int *original, size_t osize)
  */
 void quick_sort(int *array, size_t size)
 {
-	if (!array || !size)
+	if (!array || size < 2)
 		return;
 
 	sortQuick(array, size, array, size);
