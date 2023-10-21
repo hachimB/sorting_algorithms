@@ -3,41 +3,67 @@
 /**
  * swap - swap 2 elements from arr
  * @arr: arr
+ * @a: a
+ * @b: b
  */
 void swap(int *arr, int a, int b)
 {
-    int temp = arr[a];
-    arr[a] = arr[b];
-    arr[b] = temp;
+	int temp = arr[a];
+
+	arr[a] = arr[b];
+	arr[b] = temp;
 }
 
 /**
  * partition - partition helper function
  * @array: array
  * @size: size
+ * @original: original
+ * @osize: osize
  * Return: pivot index
  */
-size_t partition(int *array, size_t size)
+size_t partition(int *array, size_t size, int *original, size_t osize)
 {
-    int pivot = array[size - 1];
-    size_t i = -1;
-    size_t j;
+	int pivot = array[size - 1];
+	size_t i = -1;
+	size_t j;
 
-    for (j = 0; size > j; j++)
-    {
-        if (array[j] <= pivot)
-        {
-            i++;
+	for (j = 0; size > j; j++)
+	{
+		if (array[j] <= pivot)
+		{
+			i++;
 
-            if (j != i)
-            {
-                swap(array, i, j);
-                print_array(array, size);
-            }
-        }
-    }
+			if (j != i)
+			{
+				swap(array, i, j);
+				print_array(original, osize);
+			}
+		}
+	}
 
-    return (i);
+	return (i);
+}
+
+/**
+ * sortQuick - partial quicksort
+ * @array: array
+ * @size: size
+ * @original: original
+ * @osize: osize
+ */
+
+void sortQuick(int *array, size_t size, int *original, size_t osize)
+{
+	size_t pi;
+
+	if (size < 2 || !array)
+		return;
+
+	pi = partition(array, size, original, osize);
+
+	sortQuick(array, pi, original, osize);
+	sortQuick(array + pi, size - pi - 1, original, osize);
 }
 
 /**
@@ -47,13 +73,8 @@ size_t partition(int *array, size_t size)
  */
 void quick_sort(int *array, size_t size)
 {
-    size_t pi;
+	if (!array || size < 2)
+		return;
 
-    if (size < 2 || !array)
-        return;
-
-    pi = partition(array, size);
-
-    quick_sort(array, pi);
-    quick_sort(array + pi, size - pi - 1);
+	sortQuick(array, size, array, size);
 }
