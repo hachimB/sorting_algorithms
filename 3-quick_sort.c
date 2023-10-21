@@ -55,5 +55,5 @@ void quick_sort(int *array, size_t size)
     pi = partition(array, size);
 
     quick_sort(array, pi);
-    quick_sort(array + pi + 1, size - pi - 1);
+    quick_sort(array + pi, size - pi - 1);
 }
