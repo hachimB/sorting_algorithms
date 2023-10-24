@@ -24,7 +24,7 @@ int listlen(listint_t *head)
 
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *cnode, *prev, *temp;
+	listint_t *cnode, *prev;
 
 	if (!list || !*list || listlen(*list) < 2)
 		return;
@@ -35,7 +35,6 @@ void insertion_sort_list(listint_t **list)
 	{
 		prev = cnode->prev;
 
-		temp = cnode;
 
 		while (prev && cnode->n < prev->n)
 		{
@@ -52,14 +51,11 @@ void insertion_sort_list(listint_t **list)
 
 			prev->prev = cnode;
 
-			temp = prev;
-
 			prev = cnode->prev;
 
 			print_list(*list);
 		}
 
-		cnode = temp;
 		cnode = cnode->next;
 	}
 }
